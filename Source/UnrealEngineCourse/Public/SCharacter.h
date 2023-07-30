@@ -17,6 +17,11 @@ class UNREALENGINECOURSE_API ASCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
+protected:
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AActor> ProjectileClass;
+
 public:
 	// Sets default values for this character's properties
 	ASCharacter();
@@ -35,7 +40,17 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 	UInputAction* MoveAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	UInputAction* MouseLookAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	UInputAction* PrimaryAttack;
+
+	void FireProjectile();
+
 	void MoveCharacter(const FInputActionValue& Value);
+
+	void MoveCamera(const FInputActionValue& Value);
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
